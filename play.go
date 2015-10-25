@@ -113,9 +113,10 @@ func readFile(source io.Reader) {
 
 		byteArray := make([]byte, len(parts)-1, len(parts)-1)
 		for i, b := range parts[1:] {
-			iVal, _ := strconv.ParseInt(b, 16, 8)
+			iVal, _ := strconv.ParseInt(b, 16, 16)
 			byteArray[i] = byte(iVal)
 		}
+		fmt.Println(time.Unix(ts/1000000000, 0).Format(time.RFC3339Nano))
 		fmt.Printf("%d % x\n", ts, byteArray)
 		broadcast(byteArray)
 	}
